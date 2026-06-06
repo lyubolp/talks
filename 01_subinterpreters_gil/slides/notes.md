@@ -1,8 +1,34 @@
 # Subinterpreters and GIL-less python
 
+## What is a process ?
+
+A process is a unit of execution with it's own (separate) memory, file descriptors, execution state, etc.
+In Python, the process will have it's own interpreter (and it's own GIL).
+Creating new processes is a "heavy" operation - we need to copy everything the process has.
+
+In Python, starting a new process is done via either `fork` (Linux) or `fork + exec` (MacOS & Windows).
+
+This is wrapped around in the `Process` object in `multiprocessing`.
+
 ## What is a thread ?
 
-## What is a process ?
+A thread is the smalles unit of execution. It shares memory, file descriptors, execution state.
+
+In Python, the threads run in the same interpreter, with a shared GIL.
+Creating new threads is a lightweight operation.
+
+The `Thread` object from `multithreading` is the interface we use to work with threads in Python.
+
+## The `concurrent.futures` module
+
+Showcase of the `concurrent.futures` module in general - talk about `ThreadPoolExecutor` and `ProcessPoolExecutor`.
+
+Focus on the general interface:
+
+- `submit`
+- `map`
+
+https://docs.python.org/3/library/concurrent.futures.html#module-concurrent.futures
 
 ## Examples 00, 01 and 02
 
@@ -61,6 +87,8 @@ t.join()
 
 interpreter.close()
 ```
+
+### Communication between interpreters
 
 ## Example 03
 
