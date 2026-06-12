@@ -12,7 +12,7 @@ This is wrapped around in the `Process` object in `multiprocessing`.
 
 ## What is a thread ?
 
-A thread is the smalles unit of execution. It shares memory, file descriptors, execution state.
+A thread is the smalles unit of execution. It shares memory and file descriptors with other threads.
 
 In Python, the threads run in the same interpreter, with a shared GIL.
 Creating new threads is a lightweight operation.
@@ -34,19 +34,26 @@ https://docs.python.org/3/library/concurrent.futures.html#module-concurrent.futu
 
 ## What is a subinterpreter ?
 
-https://docs.python.org/3/library/concurrent.interpreters.html#
+While named "subinterpreters", the subinterpreter is not a new interpreter.
+An “interpreter” is effectively the execution context of the Python runtime. It contains all of the state the runtime needs to execute a program. 
 
-https://peps.python.org/pep-0734/
+The thing that actually interprets Python - the bytecode evaluation loop is one, regardles of the code running in the "main" or a "sub" interpreter. There's no duplication of the evaluation logic.
 
-https://peps.python.org/pep-0684/
+When you create a subinterpreter, what CPython allocates is a new `PyInterpreterState` — a C struct that holds all the state an interpreter needs to operate independently. Roughly speaking, each subinterpreter contains:
+
+Its own GIL (since PEP 684 / Python 3.12)
+Its own sys.modules (module registry)
+Its own import state and builtins
+Its own garbage collector state
+Its own set of PyThreadState objects (at least one per OS thread running in that interpreter)
 
 
-https://docs.python.org/3/c-api/subinterpreters.html#sub-interpreter-support, optional
+### Sharing objects
 
-
-Function is not shareable, when there is a dependency outside of the new interpreter => `.call` requires "pure" functions
+Subinterpreters can't efffectively share objects between themselves
 
 ### exec
+Function is not shareable, when there is a dependency outside of the new interpreter => `.call` requires "pure" functions
 
 ### call
 
@@ -124,5 +131,18 @@ Source: https://hugovk.dev/free-threaded-wheels/
 
 
 ## Examples 00-03 with freethreaded Python
+
+
+
+## Real-life tests
+
+### Django
+
+### gunicorn
+
+### numpy
+
+### pytorch
+
 
 ## Summary
