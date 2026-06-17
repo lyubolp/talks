@@ -1,14 +1,14 @@
 import math
 import sys
 import time
-
+from concurrent.futures import ThreadPoolExecutor
 
 NUMBERS = [
     112272535095293,
     112582705942171,
     112272535095293,
     115280095190773,
-    115797848077099
+    115797848077099,
 ] * 10
 
 
@@ -28,8 +28,11 @@ def is_prime(n):
 
 
 if __name__ == "__main__":
-    print(sys.version)
     start = time.time()
-    for number in NUMBERS:
-        is_prime(number)
-    print(f"Single CPU took {time.time() - start:.2f} seconds")
+
+    workers = int(sys.argv[1]) if len(sys.argv) > 1 else 4
+
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        executor.map(is_prime, NUMBERS)
+
+    print(f"{workers} workers took {time.time() - start:.2f} seconds")

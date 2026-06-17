@@ -1,8 +1,11 @@
-import numpy as np
 from concurrent.futures import InterpreterPoolExecutor
+
+import numpy as np
+
 
 def compute_mean(arr):
     return arr.mean()
+
 
 data = np.random.rand(1_000_000)
 

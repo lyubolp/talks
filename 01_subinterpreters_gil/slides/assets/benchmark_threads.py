@@ -4,8 +4,8 @@ import numpy as np
 workers = [1, 2, 4, 8]
 baseline = 5.04
 
-gil = [5.05, 5.04, 5.04, 5.03]
-no_gil = [4.91, 2.69, 1.66, 1.55]
+gil = [7.60, 7.76, 7.8, 7.76]
+no_gil = [7.64, 4.08, 2.27, 1.48]
 
 x = np.arange(len(workers))
 width = 0.35

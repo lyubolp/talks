@@ -2,10 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 workers = [1, 2, 4, 8]
-threads = [5.05, 5.04, 5.04, 5.03]
-process = [5.10, 2.62, 1.53, 1.14]
-subinterpreters = [5.07, 2.58, 1.50, 1.09]
-baseline = 5.04
+threads = [7.60, 7.76, 7.8, 7.76]
+process = [7.71, 4.01, 2.17, 1.38]
+subinterpreters = [7.77, 4.01, 2.15, 1.32]
+baseline = 7.53
 
 x = np.arange(len(workers))
 width = 0.25

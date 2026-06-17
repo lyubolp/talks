@@ -2,10 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 workers = [1, 2, 4, 8]
-baseline = 5.04
+baseline = 7.53
 
-gil = [5.10, 2.62, 1.53, 1.14]
-no_gil = [4.92, 2.74, 1.72, 1.33]
+gil = [7.71, 4.01, 2.17, 1.38]
+no_gil = [7.71, 4.13, 2.19, 1.44]
 
 x = np.arange(len(workers))
 width = 0.35
