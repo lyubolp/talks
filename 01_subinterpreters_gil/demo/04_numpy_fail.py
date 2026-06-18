@@ -1,6 +1,9 @@
-from concurrent.futures import InterpreterPoolExecutor
+from concurrent import interpreters
+
 
 import numpy as np
+
+interpreter = interpreters.create()
 
 
 def compute_mean(arr):
@@ -9,6 +12,4 @@ def compute_mean(arr):
 
 data = np.random.rand(1_000_000)
 
-with InterpreterPoolExecutor(max_workers=4) as executor:
-    result = executor.submit(compute_mean, data).result()
-    print(f"Mean: {result:.4f}")
+interpreter.call(compute_mean, data)

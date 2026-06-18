@@ -15,11 +15,10 @@ def worker(queue):
 queue = interpreters.create_queue()
 interpreter = interpreters.create()
 
-t = interpreter.call_in_thread(worker, queue)
+interpreter.call(worker, queue)
 
 for _ in range(3):
     number, is_prime = queue.get()
     print(f"{number}: {'prime' if is_prime else 'not prime'}")
 
-t.join()
 interpreter.close()
