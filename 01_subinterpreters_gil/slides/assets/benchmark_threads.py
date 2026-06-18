@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 workers = [1, 2, 4, 8]
-baseline = 5.04
+baseline = 7.53
 
 gil = [7.60, 7.76, 7.8, 7.76]
 no_gil = [7.64, 4.08, 2.27, 1.48]
