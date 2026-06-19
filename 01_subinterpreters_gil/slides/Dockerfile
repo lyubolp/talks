@@ -7,5 +7,5 @@ VOLUME ["/workspace"]
 
 EXPOSE 3030
 
-CMD ["slidev", "v3.md", "--remote"]
+CMD ["slidev", "slides.md", "--remote"]
 
